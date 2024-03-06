@@ -1,6 +1,7 @@
 package com.example.practicetest
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -19,6 +20,7 @@ abstract class PracDatabase : RoomDatabase() {
             context: Context,
             scope: CoroutineScope
         ): PracDatabase {
+            Log.d("PracDatabase", "Getting database instance...")
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
@@ -32,6 +34,7 @@ abstract class PracDatabase : RoomDatabase() {
                     .build()
                 INSTANCE = instance
                 // return instance
+                Log.d("PracDatabase", "Database instance created")
                 instance
             }
         }
